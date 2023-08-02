@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dogSearchFragment">
+
+    <fragment
+        android:id="@+id/dogSearchFragment"
+        android:name="com.jammes.doginfo.DogSearchFragment"
+        android:label="DogSearchFragment"
+        tools:layout="@layout/fragment_dog_search">
+        <action
+            android:id="@+id/action_dogSearchFragment_to_dogInfoFragment"
+            app:destination="@id/dogInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dogInfoFragment"
+        android:name="com.jammes.doginfo.DogInfoFragment"
+        android:label="DogInfoFragment"
+        tools:layout="@layout/fragment_dog_info" />
+</navigation>
