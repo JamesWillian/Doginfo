@@ -5,9 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.jammes.doginfo.core.repository.DogRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DogViewModel(
+@HiltViewModel
+class DogViewModel @Inject constructor(
     private val repository: DogRepository
 ): ViewModel() {
 
@@ -15,6 +18,8 @@ class DogViewModel(
 
     fun loadDogs(dogName: String) {
         viewModelScope.launch {
+            uiState.value = UiState.Loading
+
             try {
                 val result = repository.getDogsList(dogName)
                 result.fold(
@@ -38,10 +43,4 @@ class DogViewModel(
         data class Error(val exception: Throwable) : UiState()
     }
 
-    class Factory(private val repository: DogRepository) : ViewModelProvider.Factory {
-
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return DogViewModel(repository) as T
-        }
-    }
 }

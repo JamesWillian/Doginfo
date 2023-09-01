@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.jammes.doginfo.databinding.DogItemBinding
 
 class DogListAdapter: RecyclerView.Adapter<DogListAdapter.ViewHolder>() {
@@ -12,6 +13,11 @@ class DogListAdapter: RecyclerView.Adapter<DogListAdapter.ViewHolder>() {
     class ViewHolder(private val binding: DogItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(dogItem: Dog) {
             binding.DogNameTextView.text = dogItem.name
+            Glide
+                .with(itemView.context)
+                .load(dogItem.image_link)
+                .centerCrop()
+                .into(binding.DogImageView)
         }
     }
 
@@ -22,8 +28,9 @@ class DogListAdapter: RecyclerView.Adapter<DogListAdapter.ViewHolder>() {
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = asyncListDiffer.currentList.size
+    fun updateDogsList(dogsList: List<Dog>) = asyncListDiffer.submitList(dogsList)
 
+    override fun getItemCount(): Int = asyncListDiffer.currentList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(asyncListDiffer.currentList[position])

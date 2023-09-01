@@ -1,5 +1,6 @@
 package com.jammes.doginfo.core.repository
 
+import com.jammes.doginfo.Dog
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -21,6 +22,6 @@ interface DogApiService {
         @Query("protectiveness") protectiveness: Int? = null,
         @Query("trainability") trainability: Int? = null,
         @Query("offset") offset: Int? = null
-    ): Response<DogAPIResponse>
+    ): Response<List<Dog>>
 
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Doginfo</string>
+    <string name="dog_breed_edittext_hint">Digite a Raça do Dog</string>
+    <string name="search_button">Buscar</string>
 </resources>
