@@ -45,7 +45,7 @@ class DogSearchFragment: Fragment() {
 
         addingDividerDecoration()
 
-        viewModel.uiState.observe(viewLifecycleOwner) {uiState ->
+        viewModel.stateOnceAndStream().observe(viewLifecycleOwner) {uiState ->
             when (uiState) {
                 is DogViewModel.UiState.Loading -> {
 
@@ -54,7 +54,9 @@ class DogSearchFragment: Fragment() {
 
                     updateUi(uiState.dogs)
                 }
-                else -> {}
+                is DogViewModel.UiState.Error -> {
+                    updateUi(emptyList())
+                }
             }
         }
 
@@ -82,7 +84,7 @@ class DogSearchFragment: Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.loadDogs(binding.DogSearchEditText.editText.toString())
+        viewModel.loadDogs(binding.DogSearchEditText.editText?.text.toString())
     }
 
     override fun onDestroy() {

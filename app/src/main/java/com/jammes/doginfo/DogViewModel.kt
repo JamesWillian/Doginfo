@@ -1,8 +1,8 @@
 package com.jammes.doginfo
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.jammes.doginfo.core.repository.DogRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -35,6 +35,8 @@ class DogViewModel @Inject constructor(
             }
         }
     }
+
+    fun stateOnceAndStream() : LiveData<UiState> = uiState
 
     sealed class UiState {
 
