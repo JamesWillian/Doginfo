@@ -18,15 +18,15 @@ data class Dog(
     val trainability: Int,
     val energy: Int,
     val barking: Int,
-    val min_life_expectancy: Int,
-    val max_life_expectancy: Int,
-    val max_height_male: Int,
-    val max_height_female: Int,
-    val max_weight_male: Int,
-    val max_weight_female: Int,
-    val min_height_male: Int,
-    val min_height_female: Int,
-    val min_weight_male: Int,
-    val min_weight_female: Int
+    val min_life_expectancy: Float,
+    val max_life_expectancy: Float,
+    val max_height_male: Float,
+    val max_height_female: Float,
+    val max_weight_male: Float,
+    val max_weight_female: Float,
+    val min_height_male: Float,
+    val min_height_female: Float,
+    val min_weight_male: Float,
+    val min_weight_female: Float
 
 )

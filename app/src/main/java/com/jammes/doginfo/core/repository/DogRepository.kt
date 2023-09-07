@@ -1,5 +1,6 @@
 package com.jammes.doginfo.core.repository
 
+import android.util.Log
 import com.jammes.doginfo.Dog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -11,6 +12,7 @@ class DogRepository @Inject constructor(
 
     suspend fun getDogsList(name: String): Result<List<Dog>> {
         return try {
+            Log.d("DogRepository","Before dogApi.getDogs(name = name)")
             val response = dogApi.getDogs(name = name)
 
             withContext(Dispatchers.IO) {
@@ -18,10 +20,12 @@ class DogRepository @Inject constructor(
                     val dogs = response.body() ?: emptyList()
                     Result.success(dogs)
                 } else {
-                    Result.failure(Exception("Erro ao obter resposta"))
+                    Log.e("DogRepository","Não foi possivel obter resposta da API. Error: ${response.message()}")
+                    Result.failure(Exception("Error: ${response.message()}"))
                 }
             }
         } catch (e: Exception) {
+            Log.e("DogRepository","error: ${e.message}")
             Result.failure(e)
         }
     }
