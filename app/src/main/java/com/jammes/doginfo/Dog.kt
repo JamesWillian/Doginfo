@@ -3,7 +3,6 @@ package com.jammes.doginfo
 import java.util.UUID
 
 data class Dog(
-    val id: String = UUID.randomUUID().toString(),
     val name: String,
     val image_link: String,
     val good_with_children: Int,

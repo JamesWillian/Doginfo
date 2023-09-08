@@ -2,6 +2,7 @@ package com.jammes.doginfo
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,13 @@ class DogListAdapter: RecyclerView.Adapter<DogListAdapter.ViewHolder>() {
                 .load(dogItem.image_link)
                 .centerCrop()
                 .into(binding.DogImageView)
+
+            binding.root.setOnClickListener {
+                val name = dogItem.name
+                val action = DogSearchFragmentDirections.actionDogSearchFragmentToDogInfoFragment(name)
+
+                itemView.findNavController().navigate(action)
+            }
         }
     }
 
@@ -40,7 +48,7 @@ class DogListAdapter: RecyclerView.Adapter<DogListAdapter.ViewHolder>() {
 
     object DiffCallBack : DiffUtil.ItemCallback<Dog>() {
         override fun areItemsTheSame(oldItem: Dog, newItem: Dog): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.name == newItem.name
         }
 
         override fun areContentsTheSame(oldItem: Dog, newItem: Dog): Boolean {

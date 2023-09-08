@@ -14,7 +14,8 @@ class DogViewModel @Inject constructor(
     private val repository: DogRepository
 ): ViewModel() {
 
-    val uiState: MutableLiveData<UiState> = MutableLiveData()
+    private val uiState: MutableLiveData<UiState> = MutableLiveData()
+    lateinit var currentDogName: String
 
     fun loadDogs(dogName: String) {
         viewModelScope.launch {
@@ -37,6 +38,18 @@ class DogViewModel @Inject constructor(
     }
 
     fun stateOnceAndStream() : LiveData<UiState> = uiState
+
+    fun getCurrentDog(): Dog? {
+        val uiStateValue = uiState.value
+
+        if (uiStateValue is UiState.Success) {
+            val dogsList = uiStateValue.dogs
+
+            return dogsList.find { it.name == currentDogName }
+        }
+
+        return null
+    }
 
     sealed class UiState {
 

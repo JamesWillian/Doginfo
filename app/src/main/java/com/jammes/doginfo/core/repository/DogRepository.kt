@@ -12,7 +12,6 @@ class DogRepository @Inject constructor(
 
     suspend fun getDogsList(name: String): Result<List<Dog>> {
         return try {
-            Log.d("DogRepository","Before dogApi.getDogs(name = name)")
             val response = dogApi.getDogs(name = name)
 
             withContext(Dispatchers.IO) {

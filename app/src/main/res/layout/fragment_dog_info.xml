@@ -1,6 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/dogImageView"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/dogBreedTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fontFamily="casual"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dogImageView"
+        tools:text="Dog Breed" />
+
+    <TextView
+        android:id="@+id/energyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/energy"
+        app:layout_constraintEnd_toStartOf="@id/energyRatingBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dogBreedTextView" />
+
+    <RatingBar
+        android:id="@+id/energyRatingBar"
+        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:numStars="5"
+        android:rating="4"
+        app:layout_constraintBottom_toBottomOf="@id/energyTextView"
+        app:layout_constraintStart_toEndOf="@id/energyTextView"
+        app:layout_constraintTop_toTopOf="@+id/energyTextView" />
+
+    <TextView
+        android:id="@+id/energyNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="4.0"
+        app:layout_constraintBottom_toBottomOf="@id/energyRatingBar"
+        app:layout_constraintStart_toEndOf="@id/energyRatingBar"
+        app:layout_constraintTop_toTopOf="@id/energyRatingBar" />
+
+    <TextView
+        android:id="@+id/trainabilityTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/trainability"
+        app:layout_constraintEnd_toStartOf="@id/trainabilityRatingBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/energyTextView" />
+
+    <RatingBar
+        android:id="@+id/trainabilityRatingBar"
+        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:numStars="5"
+        android:rating="4"
+        app:layout_constraintBottom_toBottomOf="@id/trainabilityTextView"
+        app:layout_constraintStart_toEndOf="@id/trainabilityTextView"
+        app:layout_constraintTop_toTopOf="@+id/trainabilityTextView" />
+
+    <TextView
+        android:id="@+id/trainabilityNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="4.0"
+        app:layout_constraintBottom_toBottomOf="@id/trainabilityRatingBar"
+        app:layout_constraintStart_toEndOf="@id/trainabilityRatingBar"
+        app:layout_constraintTop_toTopOf="@id/trainabilityRatingBar" />
+
+    <TextView
+        android:id="@+id/protectivenessTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/protectiveness"
+        app:layout_constraintEnd_toStartOf="@id/protectivenessRatingBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trainabilityTextView" />
+
+    <RatingBar
+        android:id="@+id/protectivenessRatingBar"
+        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:numStars="5"
+        android:rating="4"
+        app:layout_constraintBottom_toBottomOf="@id/protectivenessTextView"
+        app:layout_constraintStart_toEndOf="@id/protectivenessTextView"
+        app:layout_constraintTop_toTopOf="@+id/protectivenessTextView" />
+
+    <TextView
+        android:id="@+id/protectivenessNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="4.0"
+        app:layout_constraintBottom_toBottomOf="@id/protectivenessRatingBar"
+        app:layout_constraintStart_toEndOf="@id/protectivenessRatingBar"
+        app:layout_constraintTop_toTopOf="@id/protectivenessRatingBar" />
+
+    <TextView
+        android:id="@+id/playfulnessTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Playfulness"
+        app:layout_constraintEnd_toStartOf="@id/playfulnessRatingBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/protectivenessTextView" />
+
+    <RatingBar
+        android:id="@+id/playfulnessRatingBar"
+        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:numStars="5"
+        android:rating="4"
+        app:layout_constraintBottom_toBottomOf="@id/playfulnessTextView"
+        app:layout_constraintStart_toEndOf="@id/playfulnessTextView"
+        app:layout_constraintTop_toTopOf="@+id/playfulnessTextView" />
+
+    <TextView
+        android:id="@+id/playfulnessNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="4.0"
+        app:layout_constraintBottom_toBottomOf="@id/playfulnessRatingBar"
+        app:layout_constraintStart_toEndOf="@id/playfulnessRatingBar"
+        app:layout_constraintTop_toTopOf="@id/playfulnessRatingBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

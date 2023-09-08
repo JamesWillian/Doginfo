@@ -82,11 +82,6 @@ class DogSearchFragment: Fragment() {
         binding.DogsList.addItemDecoration(divider)
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.loadDogs(binding.DogSearchEditText.editText?.text.toString())
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
