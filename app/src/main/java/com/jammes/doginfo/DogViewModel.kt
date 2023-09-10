@@ -17,7 +17,7 @@ class DogViewModel @Inject constructor(
     private val uiState: MutableLiveData<UiState> = MutableLiveData()
     lateinit var currentDogName: String
 
-    fun loadDogs(dogName: String) {
+    fun getDogs(dogName: String) {
         viewModelScope.launch {
             uiState.value = UiState.Loading
 

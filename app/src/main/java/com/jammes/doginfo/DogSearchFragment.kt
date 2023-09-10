@@ -1,9 +1,11 @@
 package com.jammes.doginfo
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.jammes.doginfo.databinding.FragmentDogSearchBinding
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class DogSearchFragment: Fragment() {
@@ -61,8 +64,8 @@ class DogSearchFragment: Fragment() {
         }
 
         binding.button.setOnClickListener {
-
-            viewModel.loadDogs(binding.DogSearchEditText.editText?.text.toString())
+            hideKeyboard()
+            viewModel.getDogs(binding.DogSearchEditText.editText?.text.toString())
         }
 
     }
@@ -75,11 +78,20 @@ class DogSearchFragment: Fragment() {
         val divider = MaterialDividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
         val resources = requireContext().resources
 
-        divider.isLastItemDecorated = false
+        divider.isLastItemDecorated = true
         divider.dividerThickness = resources.getDimensionPixelSize(R.dimen.vertical_margin)
         divider.dividerColor = ContextCompat.getColor(requireContext(), com.google.android.material.R.color.mtrl_btn_transparent_bg_color)
 
         binding.DogsList.addItemDecoration(divider)
+    }
+
+    private fun hideKeyboard() {
+        val view: View = this.requireView()
+
+        (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?)?.hideSoftInputFromWindow(
+            view.windowToken,
+            0
+        )
     }
 
     override fun onDestroy() {

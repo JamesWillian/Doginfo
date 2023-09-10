@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Doginfo</string>
-    <string name="dog_breed_edittext_hint">Digite a Raça do Dog</string>
-    <string name="search_button">Buscar</string>
+    <string name="dog_breed_edittext_hint">Dog Breed</string>
+    <string name="search_button">Search</string>
     <string name="energy">Energy</string>
     <string name="trainability">Trainability</string>
     <string name="protectiveness">Protectiveness</string>
+    <string name="playfulness">Playfulness</string>
+    <string name="content_description_start_icon">search icon</string>
 </resources>
