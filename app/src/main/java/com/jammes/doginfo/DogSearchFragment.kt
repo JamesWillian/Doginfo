@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -16,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class DogSearchFragment: Fragment() {
+class DogSearchFragment : Fragment() {
 
     private var _binding: FragmentDogSearchBinding? = null
     private val binding get() = _binding!!
@@ -48,30 +49,47 @@ class DogSearchFragment: Fragment() {
 
         addingDividerDecoration()
 
-        viewModel.stateOnceAndStream().observe(viewLifecycleOwner) {uiState ->
+        viewModel.stateOnceAndStream().observe(viewLifecycleOwner) { uiState ->
             when (uiState) {
                 is DogViewModel.UiState.Loading -> {
 
+                    binding.contentLoadingProgressBar.show()
                 }
                 is DogViewModel.UiState.Success -> {
 
                     updateUi(uiState.dogs)
                 }
                 is DogViewModel.UiState.Error -> {
+
                     updateUi(emptyList())
                 }
             }
         }
 
         binding.button.setOnClickListener {
-            hideKeyboard()
-            viewModel.getDogs(binding.DogSearchEditText.editText?.text.toString())
+            if (binding.DogSearchEditText.editText?.text.toString().isBlank()) {
+                Toast.makeText(requireContext(), R.string.enter_the_dog_breed, Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                hideKeyboard()
+                viewModel.getDogs(binding.DogSearchEditText.editText?.text.toString())
+            }
         }
 
     }
 
     private fun updateUi(dogsList: List<Dog>) {
+        if (dogsList.isEmpty()) {
+            binding.placeholderImageView.visibility = View.VISIBLE
+            binding.placeholderTextView.visibility = View.VISIBLE
+        } else {
+            binding.placeholderImageView.visibility = View.GONE
+            binding.placeholderTextView.visibility = View.GONE
+        }
+
+        binding.contentLoadingProgressBar.hide()
         adapter.updateDogsList(dogsList)
+
     }
 
     private fun addingDividerDecoration() {
@@ -80,7 +98,10 @@ class DogSearchFragment: Fragment() {
 
         divider.isLastItemDecorated = true
         divider.dividerThickness = resources.getDimensionPixelSize(R.dimen.vertical_margin)
-        divider.dividerColor = ContextCompat.getColor(requireContext(), com.google.android.material.R.color.mtrl_btn_transparent_bg_color)
+        divider.dividerColor = ContextCompat.getColor(
+            requireContext(),
+            com.google.android.material.R.color.mtrl_btn_transparent_bg_color
+        )
 
         binding.DogsList.addItemDecoration(divider)
     }

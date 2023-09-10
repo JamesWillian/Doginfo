@@ -7,4 +7,6 @@
     <string name="protectiveness">Protectiveness</string>
     <string name="playfulness">Playfulness</string>
     <string name="content_description_start_icon">search icon</string>
+    <string name="no_dogs_were_found_placeholder">Sorry! No dogs were found…</string>
+    <string name="enter_the_dog_breed">Please… Enter the Dog Breed!</string>
 </resources>
