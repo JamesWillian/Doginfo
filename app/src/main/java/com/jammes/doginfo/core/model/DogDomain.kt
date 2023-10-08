@@ -1,8 +1,6 @@
-package com.jammes.doginfo
+package com.jammes.doginfo.core.model
 
-import java.util.UUID
-
-data class Dog(
+data class DogDomain(
     val name: String,
     val image_link: String,
     val good_with_children: Int,

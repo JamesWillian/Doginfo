@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.jammes.doginfo.core.model.DogDomain
 import com.jammes.doginfo.databinding.FragmentDogInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,7 +48,7 @@ class DogInfoFragment: Fragment() {
         viewModel.getCurrentDog()?.let { updateUI(it) }
     }
 
-    private fun updateUI(dog: Dog) {
+    private fun updateUI(dog: DogDomain) {
         Glide
             .with(this)
             .load(dog.image_link)

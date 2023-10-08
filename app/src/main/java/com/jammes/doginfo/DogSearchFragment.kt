@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.jammes.doginfo.core.model.DogDomain
 import com.jammes.doginfo.databinding.FragmentDogSearchBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -78,7 +79,7 @@ class DogSearchFragment : Fragment() {
 
     }
 
-    private fun updateUi(dogsList: List<Dog>) {
+    private fun updateUi(dogsList: List<DogDomain>) {
         if (dogsList.isEmpty()) {
             binding.placeholderImageView.visibility = View.VISIBLE
             binding.placeholderTextView.visibility = View.VISIBLE

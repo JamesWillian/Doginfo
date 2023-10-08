@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.jammes.doginfo.core.model.DogDomain
 import com.jammes.doginfo.databinding.DogItemBinding
 
 class DogListAdapter: RecyclerView.Adapter<DogListAdapter.ViewHolder>() {
 
     class ViewHolder(private val binding: DogItemBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(dogItem: Dog) {
+        fun bind(dogItem: DogDomain) {
             binding.DogNameTextView.text = dogItem.name
             Glide
                 .with(itemView.context)
@@ -36,7 +37,7 @@ class DogListAdapter: RecyclerView.Adapter<DogListAdapter.ViewHolder>() {
         return ViewHolder(binding)
     }
 
-    fun updateDogsList(dogsList: List<Dog>) = asyncListDiffer.submitList(dogsList)
+    fun updateDogsList(dogsList: List<DogDomain>) = asyncListDiffer.submitList(dogsList)
 
     override fun getItemCount(): Int = asyncListDiffer.currentList.size
 
@@ -44,14 +45,14 @@ class DogListAdapter: RecyclerView.Adapter<DogListAdapter.ViewHolder>() {
         holder.bind(asyncListDiffer.currentList[position])
     }
 
-    private val asyncListDiffer: AsyncListDiffer<Dog> = AsyncListDiffer(this, DiffCallBack)
+    private val asyncListDiffer: AsyncListDiffer<DogDomain> = AsyncListDiffer(this, DiffCallBack)
 
-    object DiffCallBack : DiffUtil.ItemCallback<Dog>() {
-        override fun areItemsTheSame(oldItem: Dog, newItem: Dog): Boolean {
+    object DiffCallBack : DiffUtil.ItemCallback<DogDomain>() {
+        override fun areItemsTheSame(oldItem: DogDomain, newItem: DogDomain): Boolean {
             return oldItem.name == newItem.name
         }
 
-        override fun areContentsTheSame(oldItem: Dog, newItem: Dog): Boolean {
+        override fun areContentsTheSame(oldItem: DogDomain, newItem: DogDomain): Boolean {
             return oldItem == newItem
         }
 

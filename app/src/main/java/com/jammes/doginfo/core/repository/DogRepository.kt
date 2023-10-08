@@ -1,7 +1,7 @@
 package com.jammes.doginfo.core.repository
 
 import android.util.Log
-import com.jammes.doginfo.Dog
+import com.jammes.doginfo.core.model.DogDomain
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -10,7 +10,7 @@ class DogRepository @Inject constructor(
     private val dogApi: DogApiService
 ) {
 
-    suspend fun getDogsList(name: String): Result<List<Dog>> {
+    suspend fun getDogsList(name: String): Result<List<DogDomain>> {
         return try {
             val response = dogApi.getDogs(name = name)
 

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jammes.doginfo.core.model.DogDomain
 import com.jammes.doginfo.core.repository.DogRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -39,7 +40,7 @@ class DogViewModel @Inject constructor(
 
     fun stateOnceAndStream() : LiveData<UiState> = uiState
 
-    fun getCurrentDog(): Dog? {
+    fun getCurrentDog(): DogDomain? {
         val uiStateValue = uiState.value
 
         if (uiStateValue is UiState.Success) {
@@ -54,7 +55,7 @@ class DogViewModel @Inject constructor(
     sealed class UiState {
 
         object Loading : UiState()
-        data class Success(val dogs: List<Dog>) : UiState()
+        data class Success(val dogs: List<DogDomain>) : UiState()
         data class Error(val exception: Throwable) : UiState()
     }
 
