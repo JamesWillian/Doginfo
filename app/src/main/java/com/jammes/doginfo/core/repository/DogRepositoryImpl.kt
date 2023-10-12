@@ -37,14 +37,15 @@ class DogRepositoryImpl @Inject constructor(
             min_height_female = min_height_female,
             min_weight_male = min_weight_male,
             min_weight_female = min_weight_female,
-            image_dir = ""
+            image_dir = "",
+            image_link = image_link
         )
     }
 
     private fun Dog.toDogDomain() : DogDomain {
         return DogDomain(
             name = name,
-            image_link = "",
+            image_link = image_link,
             good_with_children = good_with_children ?: 0,
             good_with_other_dogs = good_with_other_dogs ?: 0,
             shedding = shedding ?: 0,
@@ -87,6 +88,11 @@ class DogRepositoryImpl @Inject constructor(
     override suspend fun fetchById(dogId: String): DogDomain {
         Log.d(TAG, "Fetching dog by id $dogId")
         return dao.fetchDogById(dogId).toDogDomain()
+    }
+
+    override suspend fun dogExists(name: String): Boolean {
+        Log.d(TAG, "Checking if exists a dog with name $name")
+        return dao.dogExists(name) ?: false
     }
 
     override suspend fun insert(dog: DogDomain) {

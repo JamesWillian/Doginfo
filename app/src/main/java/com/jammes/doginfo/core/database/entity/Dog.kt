@@ -28,5 +28,6 @@ data class Dog(
     val min_height_female: Float? = null,
     val min_weight_male: Float? = null,
     val min_weight_female: Float? = null,
-    val image_dir: String
+    val image_dir: String,
+    val image_link: String
 )

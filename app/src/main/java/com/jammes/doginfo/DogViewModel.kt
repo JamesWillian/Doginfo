@@ -6,13 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jammes.doginfo.core.model.DogDomain
 import com.jammes.doginfo.core.repository.DogApiServiceImpl
+import com.jammes.doginfo.core.repository.DogRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DogViewModel @Inject constructor(
-    private val repository: DogApiServiceImpl
+    private val repository: DogApiServiceImpl,
+    private val daoRepositoryImpl: DogRepositoryImpl
 ): ViewModel() {
 
     private val uiState: MutableLiveData<UiState> = MutableLiveData()
@@ -26,6 +28,11 @@ class DogViewModel @Inject constructor(
                 val result = repository.getDogsList(dogName)
                 result.fold(
                     onSuccess = {dogItem ->
+                        dogItem.map {dog ->
+                            val dogExists = daoRepositoryImpl.dogExists(dog.name)
+                            if (!dogExists)
+                                daoRepositoryImpl.insert(dog)
+                        }
                         uiState.value = UiState.Success(dogItem)
                     },
                     onFailure = {exception ->

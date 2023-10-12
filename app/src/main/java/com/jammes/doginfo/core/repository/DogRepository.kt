@@ -10,5 +10,7 @@ interface DogRepository {
 
     suspend fun fetchById(dogId: String): DogDomain
 
+    suspend fun dogExists(name: String): Boolean
+
     suspend fun insert(dog: DogDomain)
 }
