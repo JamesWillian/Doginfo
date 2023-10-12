@@ -12,9 +12,9 @@ interface DogDao {
     suspend fun fetchAllDogs(): List<Dog>
 
     @Query("SELECT uuid, name, image_dir FROM dogs WHERE name LIKE '%'||:name||'%'")
-    suspend fun fetchDogsByName(dogName: String): List<Dog>
+    suspend fun fetchDogsByName(name: String): List<Dog>
 
-    @Query("SELECT * FROM dogs WHERE uuid = :uuid")
+    @Query("SELECT * FROM dogs WHERE uuid = :dogId")
     suspend fun fetchDogById(dogId: String): Dog
 
     @Insert

@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jammes.doginfo.core.model.DogDomain
-import com.jammes.doginfo.core.repository.DogRepository
+import com.jammes.doginfo.core.repository.DogApiServiceImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DogViewModel @Inject constructor(
-    private val repository: DogRepository
+    private val repository: DogApiServiceImpl
 ): ViewModel() {
 
     private val uiState: MutableLiveData<UiState> = MutableLiveData()
