@@ -9,11 +9,14 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_doginfo"
+        android:logo="@drawable/logo_doginfo"
+        android:roundIcon="@drawable/logo_doginfo"
+        android:appCategory="image"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Doginfo"
-        tools:targetApi="31">
+        tools:targetApi="34">
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -20,6 +20,12 @@ class DogViewModel @Inject constructor(
     private val uiState: MutableLiveData<UiState> = MutableLiveData()
     lateinit var currentDogName: String
 
+    init {
+        viewModelScope.launch {
+            fetchDogs()
+        }
+    }
+
     fun getDogs(dogName: String) {
         viewModelScope.launch {
             uiState.value = UiState.Loading
@@ -46,6 +52,10 @@ class DogViewModel @Inject constructor(
     }
 
     fun stateOnceAndStream() : LiveData<UiState> = uiState
+
+    private suspend fun fetchDogs() {
+        uiState.postValue(UiState.Success(daoRepositoryImpl.fetchAll()))
+    }
 
     fun getCurrentDog(): DogDomain? {
         val uiStateValue = uiState.value

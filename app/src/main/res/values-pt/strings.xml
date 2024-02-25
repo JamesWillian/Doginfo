@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Doginfo</string>
+    <string name="dog_breed_edittext_hint">Raça do Doguinho</string>
+    <string name="search_button">Buscar</string>
+    <string name="energy">Energia</string>
+    <string name="trainability">Treinabilidade</string>
+    <string name="protectiveness">Protetor</string>
+    <string name="playfulness">Brincalhão</string>
+    <string name="content_description_start_icon">Icone de Busca</string>
+    <string name="no_dogs_were_found_placeholder">Descupe! Não encontrei nenhum cãozinho...</string>
+    <string name="enter_the_dog_breed">Informe a Raça do Doguinho!</string>
+</resources>
